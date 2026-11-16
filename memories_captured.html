@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memories Captured - Kayla Amanda</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive, sans-serif;
+      background: linear-gradient(180deg, #ffeaad 0%, #ffe6a8 65%, #fdd49e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #111111;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      width: 100%;
+      height: 85px;
+      background-color: #ff9482;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .user-logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hamburger {
+      width: 34px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #4a3531;
+      border-radius: 2px;
+    }
+
+    /* ================= NAV DRAWER ================= */
+    .nav-drawer {
+      position: fixed;
+      top: 85px;
+      right: -250px;
+      width: 220px;
+      background-color: #fffdf7;
+      box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom-left-radius: 14px;
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: #222;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px dashed #ff9482;
+      padding-bottom: 6px;
+    }
+
+    /* ================= CONTAINER UTAMA ================= */
+    .memories-container {
+      width: 100%;
+      max-width: 440px;
+      padding: 44px 22px 48px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Gaya umum kartu */
+    .story-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf6 55%, #fdf6de 100%);
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Kartu Judul: Memories Captured */
+    .intro-card {
+      padding: 42px 28px 38px 28px;
+      margin-bottom: 4px;
+    }
+
+    .memories-title {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #0d0d0d;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    .memories-desc {
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: #181818;
+    }
+
+    /* Banner Judul Kategori (Bentuk Kapsul / Pill) */
+    .category-banner {
+      width: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #fdf8e6 100%);
+      border-radius: 20px;
+      padding: 8px 18px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111111;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+      margin-top: 6px;
+    }
+
+    /* Grid 2 Kolom Foto */
+    .photo-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-photo-card {
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grid-photo-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1.25;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+
+    /* ================= TOMBOL BACK DI BAWAH ================= */
+    .back-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background-color: #ff9482;
+      color: #111111;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      width: 105px;
+      height: 30px;
+      border: 1.5px solid #333333;
+      border-radius: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #ff826d;
+      transform: translateY(-2px);
+    }
+
+    .back-btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <a href="index.html" class="logo-container" title="Kembali ke Home">
+      <img src="img/gacha .png" alt="Logo Karakter" class="user-logo">
+    </a>
+
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Menu Samping -->
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="all_about_you.html">All About You</a>
+    <a href="all_about_us.html">All About Us</a>
+    <a href="memories_captured.html">Memories Captured</a>
+  </nav>
+
+
+  <!-- ================= KONTEN UTAMA: MEMORIES CAPTURED ================= -->
+  <main class="memories-container">
+
+    <!-- Kartu Judul -->
+    <section class="story-card intro-card">
+      <h1 class="memories-title">
+        Memories<br />
+        Captured
+      </h1>
+      <p class="memories-desc">
+        Random moments and ALSO YOUR PRECIOUS MOMENTS! Thank you for sharing your memories with me. I cherish our friendship.
+      </p>
+    </section>
+
+    <!-- 1. Our Hangouts -->
+    <div class="category-banner">Our Hangouts</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/hangouts.jpg" alt="Our Hangouts 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/hangouts1.jpg" alt="Our Hangouts 2" />
+      </div>
+    </section>
+
+    <!-- 2. Your Shining Moments -->
+    <div class="category-banner">Your Shining Moments</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/shine.jpg" alt="Your Shining Moments 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/shine2.jpg" alt="Your Shining Moments 2" />
+      </div>
+    </section>
+
+    <!-- 3. You as Sunsilk's Promoter -->
+    <div class="category-banner">You as Sunsilk's Promoter</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/sunsilk.jpg" alt="Sunsilk Promoter 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/sunsilk1.jpg" alt="Sunsilk Promoter 2" />
+      </div>
+    </section>
+
+    <!-- 4. You as a Muse -->
+    <div class="category-banner">You as a Muse</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/muse.jpg" alt="You as a Muse 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/muse1.JPG" alt="You as a Muse 2" />
+      </div>
+    </section>
+
+    <!-- 5. Your Ultimate Candid Photos Taken -->
+    <div class="category-banner">Your Ultimate Candid Photos Taken</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/candid.jpg" alt="Candid Photo 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/candid1.jpg" alt="Candid Photo 2" />
+      </div>
+    </section>
+
+    <!-- 6. You in Covid Era -->
+    <div class="category-banner">You in Covid Era</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/covid.jpg" alt="Covid Era 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/covid1.jpg" alt="Covid Era 2" />
+      </div>
+    </section>
+
+    <!-- 7. You as a Fictional Character -->
+    <div class="category-banner">You as a Fictional Character</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/gacha.png" alt="Fictional Character 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/gacha1.jpeg" alt="Fictional Character 2" />
+      </div>
+    </section>
+
+    <!-- 8. You then vs now -->
+    <div class="category-banner">You then vs now</div>
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="image/then.jpg" alt="You Then" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="image/now.jpg" alt="You Now" />
+      </div>
+    </section>
+
+    <!-- Tombol Back di Bagian Paling Bawah -->
+    <div class="back-btn-wrapper">
+      <a href="index.html" class="back-btn">Back</a>
+    </div>
+
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      navDrawer.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unbreakable Friendship - Kayla Amanda</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive, sans-serif;
+      background: linear-gradient(180deg, #ffeaad 0%, #ffe6a8 65%, #fdd49e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #111111;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      width: 100%;
+      height: 85px;
+      background-color: #ff9482;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .user-logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hamburger {
+      width: 34px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #4a3531;
+      border-radius: 2px;
+    }
+
+    /* ================= NAV DRAWER ================= */
+    .nav-drawer {
+      position: fixed;
+      top: 85px;
+      right: -250px;
+      width: 220px;
+      background-color: #fffdf7;
+      box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom-left-radius: 14px;
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: #222;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px dashed #ff9482;
+      padding-bottom: 6px;
+    }
+
+    /* ================= CONTAINER UTAMA ================= */
+    .friendship-container {
+      width: 100%;
+      max-width: 440px;
+      padding: 44px 22px 48px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Gaya umum kartu */
+    .story-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf6 55%, #fdf6de 100%);
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Kartu Judul: Unbreakable Friendship */
+    .intro-card {
+      padding: 42px 28px 38px 28px;
+    }
+
+    .friendship-title {
+      font-size: 35px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #0d0d0d;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    .friendship-desc {
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: #181818;
+    }
+
+    /* Kartu Cerita Vertikal (Foto di Atas, Cerita di Bawah) */
+    .vertical-story-card {
+      padding: 28px 26px 34px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .vertical-story-card img {
+      width: 100%;
+      height: 145px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+
+    .story-paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 12.5px;
+      line-height: 1.42;
+      color: #1c1c1c;
+      text-align: left;
+    }
+
+    /* ================= TOMBOL NAVIGASI BAWAH (BACK & NEXT) ================= */
+    .bottom-nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding: 0 4px;
+    }
+
+    .nav-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background-color: #ff9482;
+      color: #111111;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      width: 105px;
+      height: 30px;
+      border: 1.5px solid #333333;
+      border-radius: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-pill-btn:hover {
+      background-color: #ff826d;
+      transform: translateY(-2px);
+    }
+
+    .nav-pill-btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <a href="index.html" class="logo-container" title="Kembali ke Home">
+      <img src="img/gacha .png" alt="Logo Karakter" class="user-logo">
+    </a>
+
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Menu Samping -->
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="all_about_you.html">All About You</a>
+    <a href="all_about_us.html">All About Us</a>
+    <a href="memories_captured.html">Memories Captured</a>
+  </nav>
+
+  <!-- ================= KONTEN UTAMA ================= -->
+  <main class="friendship-container">
+
+    <!-- Kartu Judul -->
+    <section class="story-card intro-card">
+      <h1 class="friendship-title">
+        Unbreakable<br />
+        Friendship
+      </h1>
+      <p class="friendship-desc">
+        What makes our friendship became inseparable? How our friendship becomes longlast? When did we became this way as friends ever since we met on elementary school until now?
+      </p>
+    </section>
+
+    <!-- Kartu Cerita 1 -->
+    <section class="story-card vertical-story-card">
+      <!-- Ganti src dengan foto masa SD berdua -->
+      <img src="img/masakelam.jpeg" alt="Elementary School" />
+      <div class="story-paragraphs">
+        <p>
+          Dimulai dengan first impression gw ke elu. Rill macam bocah songong cuk. Mana dulu kan rambut lu pendek ya, jadi gw udah judgemental banget ke elu awokawokawok :vVvvvVvVVv
+        </p>
+        <p>
+          Tapi kita entah gimana caranya lama-lama jadi deket dan kemana-mana pun selalu bareng. Bahkan kita les di luar sekolah juga sama Kak Selvi demi nilai bagus anjr, kocak emang.
+        </p>
+      </div>
+    </section>
+
+    <!-- Kartu Cerita 2 -->
+    <section class="story-card vertical-story-card">
+      <!-- Ganti src dengan foto masa Covid -->
+      <img src="img/kayla&gweh3.jpg" alt="Covid Lockdown" />
+      <div class="story-paragraphs">
+        <p>
+          Lalu, covid pun menerjang. Kita jadi pisah, mana beda SMP lagi (hum sebel). Tapi, masa-masa covid lockdown menurut gw adalah masa-masa di mana kita banyak banget lika-likunya anjay.
+        </p>
+        <p>
+          Dari kita apa-apa telpon bareng, sahur sempet-sempetnya call, main rp bareng, main game bareng, cerita bareng, bahas zodiak bareng, gila bareng, semuanya bareng. Terus ada kalanya kita lagi telpon tiba-tiba mati, entah karena internet atau hpnya emg butut.
+        </p>
+      </div>
+    </section>
+
+    <!-- Kartu Cerita 3 -->
+    <section class="story-card vertical-story-card">
+      <!-- Ganti src dengan foto selfie berdua -->
+      <img src="img/kayla&gweh4.jpg" alt="Growing Together" />
+      <div class="story-paragraphs">
+        <p>
+          Dan ada kalanya juga kita sering berantem WKWKWKWK. SUMPAH DIPIKIR-PIKIR NGGA JELAS BANGET YA, TERUTAMA GW SIH.... gw yakin banget kalau kita temenan di masa sekarang dengan kelakuan gw yang dulu, lu udah cutt off gw sih... WKWKWK.
+        </p>
+        <p>
+          Tapi jujur ya, gw jadi belajar banyak seiring berjalannya waktu, lebih bisa berpikir bijak (boong), emotional stable, belajar buat lebih komunikatif, ngga silent treatment, dan hal buruk lainnya pada saat itu. Gw kadang suka kepikiran dan bersalah banget sama elu. Dulu lu seakan samsak gw kalau gw bete, anjg banget jahat ya gw. Tapi, disatu sisi lain, lu juga orang yang termasuk melihat segala kepribadian gw dari yg paling buruk, buruk, mungkin buruk, ada buruk, mendingan dikit, oke lah, better :vVV
+        </p>
+        <p>
+          Tapi serius, makasih banyak ya udah mau temenan sama gw. Maafin gw juga yah frend.
+        </p>
+      </div>
+    </section>
+
+    <!-- Kartu Cerita 4 -->
+    <section class="story-card vertical-story-card">
+      <!-- Ganti src dengan foto masa SMA -->
+      <img src="img/kayla&gweh5.jpg" alt="High School Days" />
+      <div class="story-paragraphs">
+        <p>
+          DILANJUT DENGAN MASA SMA. Yaa sebenarnya kita baik-baik ajasiihhhh.. tapi gw juga kangen lu, pengen rasanya sekali lagi kita satu sekolah terus ngelakuin hal idiot random apa pun itu (contoh: tukeran kaos kaki pas mapel agama lagi mau setor hapalan anjg WKWKWK bau gblk).
+        </p>
+        <p>
+          Apa pun masalahnya, lu termasuk orang yang terlintas di kepala gw ketika gw butuh bantuan atau <i>solusi</i>.. contohnya kisah cinta (yang sekarang udah kandas) gw dengan marchel. Senengnya ada banget, tapi sedihnya juga ada. Lu tetep mau bales chat gw kalau gw lagi ngeluh karena dia. Lu adalah orang yang gw butuhkan kalau butuh kata-kata tamparan awokawok. Makasih banyak ya syg. Lu tetap cintanya gw kok, yang kemarin mah karena ngga sengaja kepincut aje.
+        </p>
+      </div>
+    </section>
+
+    <!-- Baris Tombol Back & Next -->
+    <div class="bottom-nav-row">
+      <a href="index.html" class="nav-pill-btn">Back</a>
+      <a href="all_about_us_2.html" class="nav-pill-btn">Next</a>
+    </div>
+
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      navDrawer.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

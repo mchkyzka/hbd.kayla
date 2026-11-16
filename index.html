@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Kayla Amanda</title>
+  
+  <!-- Menggunakan Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Patrick Hand', 'Comic Neue', cursive, sans-serif;
+      /* Gradien latar belakang kuning krem lembut ke persik hangat */
+      background: linear-gradient(180deg, #ffeaad 0%, #ffe6a8 65%, #fdd49e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #111111;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      width: 100%;
+      height: 85px;
+      background-color: #ff9482; /* Warna coral/salmon */
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .user-logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Ikon Hamburger Menu */
+    .hamburger {
+      width: 34px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #4a3531;
+      border-radius: 2px;
+    }
+
+    /* ================= NAV DRAWER (MENU SAMPING) ================= */
+    .nav-drawer {
+      position: fixed;
+      top: 85px;
+      right: -250px; /* Tersembunyi di luar layar sebelah kanan */
+      width: 220px;
+      background-color: #fffdf7;
+      box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom-left-radius: 14px;
+      padding: 20px;
+      transition: right 0.3s ease; /* Efek geser yang mulus */
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Class ini akan aktif (menu muncul) saat tombol hamburger diklik */
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: #222;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      border-bottom: 1px dashed #ff9482;
+      padding-bottom: 6px;
+    }
+
+    .nav-drawer a:hover {
+      color: #ff9482;
+    }
+
+    /* ================= MAIN CONTAINER & CARD ================= */
+    .main-container {
+      width: 100%;
+      max-width: 440px;
+      padding: 115px 18px 50px 18px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .card {
+      width: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf6 50%, #fdf6de 100%);
+      border-radius: 18px;
+      padding: 38px 24px 44px 24px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    /* ================= TYPOGRAPHY ================= */
+    .greeting-title {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #0d0d0d;
+      margin-bottom: 14px;
+    }
+
+    .greeting-subtitle {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #1f1f1f;
+      margin-bottom: 30px;
+    }
+
+    /* ================= MENU BANNER BUTTONS ================= */
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .menu-card {
+      position: relative;
+      width: 100%;
+      height: 76px;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease;
+      background-color: #e5e5e5;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .menu-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: contrast(0.95) brightness(1.05);
+      z-index: 1;
+    }
+
+    .menu-card span {
+      position: relative;
+      z-index: 3;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0d0d0d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    
+    <!-- Logo PNG di Kiri Atas -->
+    <a href="index.html" class="logo-container" title="Kembali ke Home">
+      <img src="img/gacha .png" alt="Logo Karakter" class="user-logo">
+    </a>
+
+    <!-- Tombol Hamburger dengan ID 'menuBtn' -->
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- ================= MENU SAMPING (DRAWER) ================= -->
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="all_about_you.html">All About You</a>
+    <a href="all_about_us.html">All About Us</a>
+    <a href="memories_captured.html">Memories Captured</a>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="main-container">
+    <section class="card">
+      <h1 class="greeting-title">
+        Hello,<br />
+        Kayla Amanda.
+      </h1>
+
+      <p class="greeting-subtitle">
+        Since today is your birthday, I wanted to make something that’s a bit special. I hope you like it.
+      </p>
+
+      <div class="menu-list">
+        <a href="all_about_you.html" class="menu-card">
+          <img src="img/kaylamenu.JPG" />
+          <span>All About You</span>
+        </a>
+
+        <a href="all_about_us.html" class="menu-card">
+          <img src="img/kayla&gweh1.jpg" alt="All About Us" />
+          <span>All About Us</span>
+        </a>
+
+        <a href="memories_captured.html" class="menu-card">
+          <img src="img/kayla&gweh2.jpg" alt="Memories Captured" />
+          <span>Memories Captured</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= JAVASCRIPT UNTUK MEMBUKA/MENUTUP DRAWER ================= -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      navDrawer.classList.toggle('open');
+    });
+
+    // Opsional: Klik di luar menu untuk menutup drawer
+    document.addEventListener('click', (event) => {
+      if (!navDrawer.contains(event.target) && !menuBtn.contains(event.target)) {
+        navDrawer.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>

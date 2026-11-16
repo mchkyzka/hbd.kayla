@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unbreakable Friendship (Part 2) - Kayla Amanda</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive, sans-serif;
+      background: linear-gradient(180deg, #ffeaad 0%, #ffe6a8 65%, #fdd49e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #111111;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      width: 100%;
+      height: 85px;
+      background-color: #ff9482;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .user-logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hamburger {
+      width: 34px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #4a3531;
+      border-radius: 2px;
+    }
+
+    /* ================= NAV DRAWER ================= */
+    .nav-drawer {
+      position: fixed;
+      top: 85px;
+      right: -250px;
+      width: 220px;
+      background-color: #fffdf7;
+      box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom-left-radius: 14px;
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: #222;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px dashed #ff9482;
+      padding-bottom: 6px;
+    }
+
+    /* ================= CONTAINER UTAMA (1 CARD) ================= */
+    .single-card-container {
+      width: 100%;
+      max-width: 440px;
+      padding: 50px 22px 48px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .story-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf6 55%, #fdf6de 100%);
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    .vertical-story-card {
+      padding: 28px 26px 36px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .vertical-story-card img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+
+    .story-paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #1c1c1c;
+      text-align: left;
+    }
+
+    /* ================= TOMBOL BACK DI TENGAH ================= */
+    .center-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .nav-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background-color: #ff9482;
+      color: #111111;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      width: 105px;
+      height: 30px;
+      border: 1.5px solid #333333;
+      border-radius: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-pill-btn:hover {
+      background-color: #ff826d;
+      transform: translateY(-2px);
+    }
+
+    .nav-pill-btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <a href="index.html" class="logo-container" title="Kembali ke Home">
+      <img src="img/gacha .png" alt="Logo Karakter" class="user-logo">
+    </a>
+
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Menu Samping -->
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="all_about_you.html">All About You</a>
+    <a href="all_about_us.html">All About Us</a>
+    <a href="memories_captured.html">Memories Captured</a>
+  </nav>
+
+  <!-- ================= KONTEN UTAMA (1 CARD SAJA) ================= -->
+  <main class="single-card-container">
+
+    <section class="story-card vertical-story-card">
+      <!-- Ganti src dengan foto penutup/harapan ke depan -->
+      <img src="img/michi&kayla.jpg" />
+      <div class="story-paragraphs">
+        <p>
+          And up until now, we’re still friends for good anyways. Makasih ya udah bantu gw menyadarkan beberapa hal dari segala aspek kehidupan, mengajarkan gw banyak hal, dan memberikan yang terbaik dengan versi diri lu sendiri. 
+        </p>
+        <p>
+          Makasih udah jadi orang paling keren. Semoga bisa bersinar di kampus lu, jadi talentnya mereka, mengharumkan nama UBSI menjadi kampus yang semakin dikenal orang (aamiin), biar ngga dibayar jadi mahasewa sama raffi ahmad anjg emang cok. Marahin aja tu orang.
+        </p>
+        <p>
+          Oh iya maap y terbalut emosi jadinya. Intinya, makin sukses dan happy selalu ya. Afirmasi positif terhadap diri sendiri, rasa percaya diri lu yang bagus adalah salah satu yang gw admire dari lu. Tengs udh mw berteman dgn gw. Happy birthday, Kayla Amanda. Barakallah fii umriik.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1 Tombol Back di Tengah -->
+    <div class="center-btn-wrapper">
+      <a href="index.html" class="nav-pill-btn">Back</a>
+    </div>
+
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      navDrawer.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

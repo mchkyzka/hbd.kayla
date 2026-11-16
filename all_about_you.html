@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Life Road - Kayla Amanda</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Comic Neue', 'Patrick Hand', cursive, sans-serif;
+      background: linear-gradient(180deg, #ffeaad 0%, #ffe6a8 65%, #fdd49e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #111111;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      width: 100%;
+      height: 85px;
+      background-color: #ff9482;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .user-logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hamburger {
+      width: 34px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #4a3531;
+      border-radius: 2px;
+    }
+
+    /* ================= NAV DRAWER ================= */
+    .nav-drawer {
+      position: fixed;
+      top: 85px;
+      right: -250px;
+      width: 220px;
+      background-color: #fffdf7;
+      box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom-left-radius: 14px;
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: #222;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px dashed #ff9482;
+      padding-bottom: 6px;
+    }
+
+    /* ================= CONTAINER UTAMA YOUR LIFE ROAD ================= */
+    .about-container {
+      width: 100%;
+      max-width: 440px;
+      padding: 44px 22px 48px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Gaya dasar semua kartu */
+    .story-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf6 55%, #fdf6de 100%);
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Kartu Judul: Your Life Road */
+    .intro-card {
+      padding: 46px 28px 42px 28px;
+    }
+
+    .life-road-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0d0d0d;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    .life-road-desc {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: #181818;
+    }
+
+    /* Kartu Cerita Horizontal (Foto + Paragraf) */
+    .horizontal-story-card {
+      padding: 20px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .horizontal-story-card img {
+      width: 132px;
+      height: 132px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background-color: #eee;
+    }
+
+    .story-text {
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: 11.5px;
+      line-height: 1.35;
+      color: #1f1f1f;
+      text-align: left;
+    }
+
+    /* Baris Grid 2 Kartu Foto */
+    .photo-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-photo-card {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grid-photo-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1.15;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+
+    /* ================= TOMBOL BACK DI BAWAH ================= */
+    .back-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background-color: #ff9482;
+      color: #111111;
+      font-family: 'Comic Neue', 'Patrick Hand', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      width: 105px;
+      height: 30px;
+      border: 1.5px solid #333333;
+      border-radius: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #ff826d;
+      transform: translateY(-2px);
+    }
+
+    .back-btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <a href="index.html" class="logo-container" title="Kembali ke Home">
+      <!-- Ganti 'logo.png' dengan file logo PNG Anda -->
+      <img src="img/gacha .png" alt="Logo Karakter" class="user-logo">
+    </a>
+
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Menu Samping -->
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="all_about_you.html">All About You</a>
+    <a href="all_about_us.html">All About Us</a>
+    <a href="memories_captured.html">Memories Captured</a>
+  </nav>
+
+  <!-- ================= KONTEN UTAMA: YOUR LIFE ROAD ================= -->
+  <main class="about-container">
+
+    <!-- 0. Kartu Judul: Your Life Road -->
+    <section class="story-card intro-card">
+      <h1 class="life-road-title">Your Life Road</h1>
+      <p class="life-road-desc">
+        This is your life path, starting from when you was just a kid until now, as a student college who also do a content as her side job. We never know how our life's gonna be.
+      </p>
+    </section>
+
+    <!-- ==================== FASE 1: MASA BALITA / KECIL ==================== -->
+    <!-- Cerita 1 (Foto Kiri, Teks Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <img src="img/minikayla1.jpg" alt="Fase 1 Utama" />
+      <p class="story-text">
+        This is you when you're just a babyy. Bocil lu pasti ngga nyangka sama lu yang sekarang dengan segala perjuangan yang lu lalui selama lu hidup ini. Kalau lu bisa punya kesempatan buat ngobrol sama diri lu yang versi kecil, pasti dia excited dan ikut bangga.
+      </p>
+    </section>
+
+    <!-- Grid Foto 1 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/minikayla.jpg" alt="Foto Kecil 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/minikayla2.jpg" alt="Foto Kecil 2" />
+      </div>
+    </section>
+
+    <!-- ==================== FASE 2: MASA SD ==================== -->
+    <!-- Cerita 2 (Teks Kiri, Foto Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <p class="story-text">
+        Masa SD adalah masa di mana segala macam drama ada. Gw inget dulu gw pernah disuruh Ms. Soraya buat "ngajarin" lu pas dikasih soal bahasa Inggris. Dilanjut dengan masa di mana kita les pelajaran tambahan di tempat Bu Ida demi mengejar nilai yang "bagus" supaya bisa masuk SMP Negeri.
+      </p>
+      <img src="img/masakelam.jpeg" alt="Fase 2 Utama" />
+    </section>
+
+    <!-- Grid Foto 2 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/masakelam1.jpeg" alt="Foto SD 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/masakelam2.jpeg" alt="Foto SD 2" />
+      </div>
+    </section>
+
+    <!-- ==================== FASE 3: MASA SMP ==================== -->
+    <!-- Cerita 3 (Foto Kiri, Teks Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <img src="img/kaylasmp.jpg" alt="Fase 3 Utama" />
+      <p class="story-text">
+        Masuk ke fase SMP yang lu berujung masuk swasta (karena takdir berkata lain). Selama PJJ sampai akhirnya tatap muka kembali, lu mulai perlahan mengambil kesempatan apa pun itu demi bisa dapet SMA Negeri. Ekskul vokal? Jadi dirigen? Masuk organisasi? Ada lomba pun juga lu babat wkwk.
+    </section>
+
+    <!-- Grid Foto 3 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylasmp1.jpg" alt="Foto SMP 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylasmp2.jpg" alt="Foto SMP 2" />
+      </div>
+    </section>
+
+    <!-- ==================== FASE 4: MASA SMA ==================== -->
+    <!-- Cerita 4 (Teks Kiri, Foto Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <p class="story-text">
+        Atas izin Allah, lu pun diterima di SMA Negeri. Lu perlahan mulai ngebangun rasa percaya diri, public speaking, bersosialisasi dengan banyak teman, dan masih banyak lagi. Lu juga secara berkala glow-up parah (Maa Syaa Allah).
+      </p>
+      <img src="img/kaylasma.jpg" alt="Fase 4 Utama" />
+    </section>
+
+    <!-- Grid Foto 4 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylasma1.JPG" alt="Foto SMA 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylasma2.JPG" alt="Foto SMA 2" />
+      </div>
+    </section>
+
+    <!-- ==================== FASE 5: CONTENT CREATOR / COSPLAY ==================== -->
+    <!-- Cerita 5 (Foto Kiri, Teks Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <img src="img/kaylamuse.JPG" alt="Fase 5 Utama" />
+      <p class="story-text">
+        Meski ngga masuk PTN, Allah prepared a better opportunities for you. Selama libur sebelum masuk kuliah, lu mencoba mencari kegiatan baru sebagai pengalaman baru, which is as a (beauty) muse. And guess what? You had changed a LOTTT ever since. So many bigger opportunities came to you. You shine so much and it creates you.
+    </section>
+
+    <!-- Grid Foto 5 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylamuse1.jpg" alt="Foto Content 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylamuse2.jpg" alt="Foto Content 2" />
+      </div>
+    </section>
+
+    <!-- ==================== FASE 6: KULIAH / SEKARANG ==================== -->
+    <!-- Cerita 6 (Teks Kiri, Foto Kanan) -->
+    <section class="story-card horizontal-story-card">
+      <p class="story-text">
+        Sampai akhirnya sekarang udah kuliah, you still shine as bright as a diamond. No matter how much things you had sacrificed or how much mistakes you made or how much issues you had faced that pained you, in the end, you did very amazing. Keep up the good work. I hope your future will always bright and lovely and happily ever after.
+      </p>
+        <img src="img/kaylakuliah.jpg" alt="Fase 6 Utama" />
+    </section>
+
+    <!-- Grid Foto 6 -->
+    <section class="photo-grid-row">
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylakuliah1.jpg" alt="Foto Kuliah 1" />
+      </div>
+      <div class="story-card grid-photo-card">
+        <img src="img/kaylakuliah2.jpg" alt="Foto Kuliah 2" />
+      </div>
+    </section>
+
+    <!-- ==================== TOMBOL BACK ==================== -->
+    <div class="back-btn-wrapper">
+      <a href="index.html" class="back-btn">Back</a>
+    </div>
+
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuBtn.addEventListener('click', () => {
+      navDrawer.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
